@@ -237,6 +237,9 @@ public:
   /// a string containing the current ply header. Useful for showing it to the user.
   std::string header;
 
+  // a vector of string containing the ply comments.  --liuqing 2022.10.12
+  std::vector<std::string> comments;
+
 enum Error
 {
 	// Funzioni superiori

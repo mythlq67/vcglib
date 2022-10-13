@@ -119,9 +119,16 @@ public:
 		}
 		fprintf(fpout,
 				"ply\n"
-				"format %s 1.0\n"
-				"comment VCGLIB generated\n" ,
+                "format %s 1.0\n" ,             //  --liuqing
+        //		"comment VCGLIB generated\n" ,  //  --liuqing
 				h);
+
+        //For ply file comments. --liuqing
+        for(int i = 0; i < pi.comments.size(); i++ )
+        {
+            if (pi.comments[i].find("TextureFile") == 0) continue;
+            fprintf(fpout, "comment %s", pi.comments[i].c_str());
+        }
 
 		if (((pi.mask & Mask::IOM_WEDGTEXCOORD) != 0) || ((pi.mask & Mask::IOM_VERTTEXCOORD) != 0))
 		{

@@ -424,6 +424,9 @@ public:
 		}
 		pi.header = pf.GetHeader();
 
+        //for ply comment read. --liuqing
+        pi.comments = pf.comments;
+
 		// Descrittori della camera
 		{  // Check that all the camera properties are present.
 			bool found = true;
@@ -1046,7 +1049,7 @@ public:
 				bufstr = c.substr(TFILE.length()+1);
 				n = static_cast<int>(bufstr.length());
 				for(int i=0;i<n;i++)
-					if( bufstr[i]!=' ' && bufstr[i]!='\t' && bufstr[i]>32 && bufstr[i]<125 )	bufclean.push_back(bufstr[i]);
+                    if( bufstr[i]!=' ' && bufstr[i]!='\t' && bufstr[i]>32 && bufstr[i]<=125 )	bufclean.push_back(bufstr[i]); // change <125 to <=125 --liuqing.
 
 				char buf2[255];
 				ply::interpret_texture_name( bufclean.c_str(),filename,buf2 );
